@@ -44,8 +44,9 @@ gff_to_loc <- function(gff_data, mRNA_ID = NULL){
   table_loc <- data.frame(ID=as.character(), element=as.character(), start=as.numeric(), end=as.numeric())
   for(i in 1:nrow(mRNA_length)){
     data_mRNA <- gff_data[gff_data[,9] == mRNA_length[i,1],]
-    data_mRNA <- data_mRNA[order(data_mRNA[, 1], data_mRNA[, 5]), ]
+    
     if(data_mRNA[1,7] == "+"){
+      data_mRNA <- data_mRNA[order(data_mRNA[, 4]), ]
       mRNA_start <- data_mRNA[1,4]
       data_mRNA[,4] <- data_mRNA[,4] - mRNA_start
       data_mRNA[,5] <- data_mRNA[,5] - mRNA_start
@@ -68,10 +69,17 @@ gff_to_loc <- function(gff_data, mRNA_ID = NULL){
         }else if(data_exon[i,3] == data_CDS[nrow(data_CDS),3] && data_exon[i,4] > data_CDS[nrow(data_CDS),4]){
           data_exon[i,3] <- data_CDS[nrow(data_CDS),4]
           CDS_UTR <- rbind(CDS_UTR, data_exon[i,])
+        }else if(data_exon[1,3] < data_CDS[1,3] && data_exon[1,4] > data_CDS[1,4]){
+          utr5 <- data_exon[1,]
+          utr5[1,4] <- data_CDS[1,3]
+          utr3 <- data_exon[1,]
+          utr3[1,3] <-data_CDS[1,4]
+          CDS_UTR <- rbind(CDS_UTR, utr5, utr3)
         }
       }
       table_loc <- rbind(table_loc, CDS_UTR)
     }else if(data_mRNA[1,7] == "-"){
+      data_mRNA <- data_mRNA[order(data_mRNA[, 5]), ]
       mRNA_start <- data_mRNA[nrow(data_mRNA),5]
       data_mRNA[,4] <- abs(data_mRNA[,4] - mRNA_start)
       data_mRNA[,5] <- abs(data_mRNA[,5] - mRNA_start)
@@ -96,7 +104,14 @@ gff_to_loc <- function(gff_data, mRNA_ID = NULL){
         }else if(data_exon[i,3] == data_CDS[nrow(data_CDS),3] && data_exon[i,4] > data_CDS[nrow(data_CDS),4]){
           data_exon[i,3] <- data_CDS[nrow(data_CDS),4]
           CDS_UTR <- rbind(CDS_UTR, data_exon[i,])
+        }else if(data_exon[1,3] < data_CDS[1,3] && data_exon[1,4] > data_CDS[1,4]){
+          utr5 <- data_exon[1,]
+          utr5[1,4] <- data_CDS[1,3]
+          utr3 <- data_exon[1,]
+          utr3[1,3] <-data_CDS[1,4]
+          CDS_UTR <- rbind(CDS_UTR, utr5, utr3)
         }
+        
       }
       table_loc <- rbind(table_loc, CDS_UTR)
     }
@@ -144,5 +159,5 @@ gff_plot <- function(gff_file, the_order = NULL, shape = "Rect",
   motif_plot(gff_to_loc_data$table_loc, gff_to_loc_data$mRNA_length, 
              the_order = mRNA_ID, shape = shape, r = r, 
              legend_size= legend_size, motif_color=element_color) +
-    labs(x="", y="")
+    labs(x="DNA length (5'-3')", y="Gene name")
 }
