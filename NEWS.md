@@ -1,8 +1,8 @@
 # BioVizSeq NEWS 
 
-## Version 0.1.0 (2024-11-15)
+## Version 0.1.2 (2024-12-10)
 
- - Initial release of the BioVizSeq package.
+ - Added the function `combiny_p` to facilitate free combination in patchwork. 
 
 ## Version 0.1.1 (2024-11-27)
 
@@ -10,3 +10,7 @@
  - Corrected the runtime messages in `smart_to_loc`.
  - Updated the axis titles in the output plot of `gff_plot`.
  - Updated example files in the `exdata` directory.
+
+## Version 0.1.0 (2024-11-15)
+
+ - Initial release of the BioVizSeq package.
