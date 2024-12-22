@@ -10,7 +10,12 @@ combi_p(
   meme_path = NULL,
   pfam_path = NULL,
   cdd_path = NULL,
-  fa_path = NULL
+  fa_path = NULL,
+  plantcare_path = NULL,
+  promoter_length = NULL,
+  shape = "RoundRect",
+  r = 0.3,
+  legend_size = 6
 )
 }
 \arguments{
@@ -25,6 +30,16 @@ combi_p(
 \item{cdd_path}{The path of cdd result file (.txt).}
 
 \item{fa_path}{The path of protein file (.fa/fasta).}
+
+\item{plantcare_path}{The path of plantcare file (.tab).}
+
+\item{promoter_length}{The length of promoter.}
+
+\item{shape}{RoundRect or Rect.}
+
+\item{r}{The radius of rounded corners.}
+
+\item{legend_size}{The size of legend.}
 }
 \value{
 list
