@@ -1,3 +1,8 @@
+## Version 1.0.1 (2025-01-11)
+ - `get_motif_location` to `meme_to_loc`.
+ - `motif_seq` to `meme_seq`.
+ - ID renamed in `combi_p`.
+
 ## Version 1.0.0 (2024-12-22)
  - Major change: Added shinyapp.
  - Improve the combi_p function and add plantcare plotting.

@@ -11,8 +11,10 @@ combi_p(
   pfam_path = NULL,
   cdd_path = NULL,
   fa_path = NULL,
+  smart_path = FALSE,
   plantcare_path = NULL,
   promoter_length = NULL,
+  renamefile = NULL,
   shape = "RoundRect",
   r = 0.3,
   legend_size = 6
@@ -31,9 +33,13 @@ combi_p(
 
 \item{fa_path}{The path of protein file (.fa/fasta).}
 
+\item{smart_path}{Do SMART or not. (TRUE or FALSE)}
+
 \item{plantcare_path}{The path of plantcare file (.tab).}
 
 \item{promoter_length}{The length of promoter.}
+
+\item{renamefile}{Rename file. Two cils: new_name and old_name.}
 
 \item{shape}{RoundRect or Rect.}
 
