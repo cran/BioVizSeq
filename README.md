@@ -102,7 +102,7 @@ meme.xml or mast.xml
 #### 4.2.1 Step by step
 
 ``` r
-meme_path <- system.file("extdata", "meme.xml", package = "BioVizSeq") 
+meme_path <- system.file("extdata", "mast.xml", package = "BioVizSeq") 
 meme_file <- readLines(meme_path)
 motif_loc <- meme_to_loc(meme_file)
 
@@ -192,7 +192,7 @@ fa_path <- system.file("extdata", "target.fa", package = "BioVizSeq")
 domain_loc <- smart_to_loc(fa_path)
 #> Submitting sequence AtAP2_002...
 #> Submitting sequence AtAP2_003...
-#> Job entered the queue with ID12315310540131401737102781wQtRYAVCWp. Waiting for results.
+#> Job entered the queue with ID3917111511880801744383449ENDkjSkPHY. Waiting for results.
 #> Submitting sequence AtAP2_004...
 #> Submitting sequence AtAP2_005...
 
@@ -209,7 +209,7 @@ fa_path <- system.file("extdata", "target.fa", package = "BioVizSeq")
 smart_plot(fa_path)
 #> Submitting sequence AtAP2_002...
 #> Submitting sequence AtAP2_003...
-#> Job entered the queue with ID12315310540152211737102812xSbfSAzwMV. Waiting for results.
+#> Job entered the queue with ID39171115118198521744383592TvKgSiKgen. Waiting for results.
 #> Submitting sequence AtAP2_004...
 #> Submitting sequence AtAP2_005...
 ```
@@ -271,3 +271,14 @@ plot_file$p_tree + plot_file$p_gff + plot_file$p_pfam +
 ```
 
 <img src="man/figures/README-adv_plot-1.png" width="60%" height="60%" />
+
+``` r
+library(patchwork)
+tree_path <- system.file("extdata", "idpep.nwk", package = "BioVizSeq")
+plantcare_path <- system.file("extdata", "plantCARE_output.tab", package = "BioVizSeq") 
+plot_file <- combi_p(tree_path = tree_path, plantcare_path = plantcare_path, promoter_length = 2000)
+
+plot_file$p_tree + plot_file$p_plantcare1 + plot_file$p_plantcare2 + plot_layout(ncol = 3, guides = 'collect', widths = c(1, 3, 1)) + plot_annotation( tag_levels = 'A' )
+```
+
+<img src="man/figures/README-adv_plantcare-1.png" width="60%" height="60%" />
