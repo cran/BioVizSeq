@@ -15,7 +15,7 @@ ui <- fluidPage(
   ),
   navbarPage(
     title = "",
-    windowTitle = "BioVizSeq",
+    windowTitle = "KoMPDB",
     theme = shinytheme("flatly"),
     tabPanel("Home", homepage, icon = icon("home")),
     
@@ -47,9 +47,16 @@ ui <- fluidPage(
     
     tabPanel("Basic Plot", mod_plot_ui("plot"), icon = icon("bars-staggered")),
     
-    tabPanel("Advance Plot1", mod_advplot_ui("advplot"), icon = icon("hands-asl-interpreting")),
+    tabPanel("Advance Plot", mod_advplot_ui("advplot"), icon = icon("hands-asl-interpreting")),
     
-    tabPanel("Advance plot2", mod_advplot2_ui("advplot2"), icon = icon("hands-asl-interpreting")),
+    navbarMenu(
+      title = "Others",  icon = icon("image"),
+      tabPanel("Advance Plantcare", mod_advplot2_ui("advplot2"), icon = icon("hands-asl-interpreting")),
+      tabPanel("Gene information", mod_info_ui("geneinfo"), icon = icon("file-lines")),
+      tabPanel("Protein Paramter Calc", mod_protparam_ui("pepinfo"), icon = icon("file-lines"))
+      
+    ),
+    
     
     tabPanel("About", aboutpage, icon = icon("info-circle")),
     
@@ -74,6 +81,8 @@ server <- function(input, output, session) {
   callModule(mod_plantcareplot2_server, "plantcareplot2")
   callModule(mod_advplot_server, "advplot")
   callModule(mod_advplot2_server, "advplot2")
+  callModule(mod_info_server, "geneinfo")
+  callModule(mod_protparam_server, "pepinfo")
   
   observeEvent(input$disconnect, {
     session$close()

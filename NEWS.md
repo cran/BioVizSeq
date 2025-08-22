@@ -1,12 +1,18 @@
+## Version 1.0.4 (2025-04-18)
+
+ - Added the function `combi_p2` to facilitate free combination in patchwork by the order file.
+ - Added the function `gff_statistics()` and `ProtParam_calc` to gather information about genes (such as introns, exons, CDS, etc.) and protein physicochemical properties.
+ - Improve the shinyapp.
+
 ## Version 1.0.3 (2025-04-11)
 
- - Changed some errors in the plot of plantcare result
- - Added several plotting functions for plantcare
- - Improve the combi_p function
+ - Changed some errors in the plot of plantcare result.
+ - Added several plotting functions for plantcare.
+ - Improve the 'combi_p' function.
 
 ## Version 1.0.2 (2025-03-20)
 
- - Improve the combi_p function
+ - Improve the 'combi_p' function.
 
 ## Version 1.0.1 (2025-01-11)
  - `get_motif_location` to `meme_to_loc`.
@@ -15,7 +21,7 @@
 
 ## Version 1.0.0 (2024-12-22)
  - Major change: Added shinyapp.
- - Improve the combi_p function and add plantcare plotting.
+ - Improve the 'combi_p' function and add plantcare plotting.
 
 ## Version 0.1.2 (2024-12-10)
  - Added the function `combi_p` to facilitate free combination in patchwork. 
